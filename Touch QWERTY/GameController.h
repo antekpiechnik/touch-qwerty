@@ -9,11 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import "Dictionary.h"
 #import "FileDictionary.h"
+#import "BoardView.h"
 
 
 @interface GameController : NSObject {
 	NSMutableDictionary *dictionaries;
+	NSMutableArray *words;
 	IBOutlet NSComboBox *dictionaryComboBox;
+	IBOutlet BoardView *boardView;
 	bool gameIsRunning;
 }
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;

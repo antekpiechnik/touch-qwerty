@@ -14,6 +14,7 @@
 	self = [super init];
 	if (self) {
 		dictionaries = [[NSMutableDictionary alloc] initWithCapacity: 4];
+		words = [[NSMutableArray alloc] initWithCapacity:16];
 		gameIsRunning = NO;
 	}
 	return self;
@@ -52,7 +53,6 @@
 	
 	fileName = [path stringByDeletingPathExtension];
 	extension = [path pathExtension];
-	
 	fullPath = [[NSBundle mainBundle] pathForResource:fileName ofType:extension];
 	dict = [[FileDictionary alloc] initWithFilename:fullPath];
 	[dictionaries setObject:dict forKey:name];
@@ -65,8 +65,23 @@
 
 - (void)addWord {
 	Dictionary *dict;
+	NSString *word;
+	NSTextField *textField;
+	NSRect rect;
 	
 	dict = [self currentDictionary];
-	NSLog(@"Word: %@", [dict nextWord]);
+	word = [dict nextWord];
+	rect = NSMakeRect((NSUInteger)([boardView frame].size.width),
+					  rand() % (NSUInteger)([boardView frame].size.height),
+					  [word length] * 20,
+					  23);
+	textField = [[NSTextField alloc] initWithFrame:rect];
+	[textField setBackgroundColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.0]];
+	[textField setEditable:NO];
+	[textField setBezeled:NO];
+	[textField setBordered:NO];
+	[textField setStringValue:word];
+	[words addObject:textField];
+	[boardView addSubview:textField];
 }
 @end
