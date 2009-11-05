@@ -14,8 +14,18 @@
 	self = [super init];
 	if (self) {
 		dictionaries = [[NSMutableDictionary alloc] initWithCapacity: 4];
+		gameIsRunning = NO;
 	}
 	return self;
+}
+
+- (IBAction)startStop:(id)sender {
+	if (gameIsRunning) {
+		[sender setTitle:@"Start"];
+	} else {
+		[sender setTitle:@"Stop"];
+	}
+	gameIsRunning = ! gameIsRunning;
 }
 
 - (void)awakeFromNib {

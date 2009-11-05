@@ -14,7 +14,9 @@
 @interface GameController : NSObject {
 	NSMutableDictionary *dictionaries;
 	IBOutlet NSComboBox *dictionaryComboBox;
+	bool gameIsRunning;
 }
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;
 - (Dictionary *)currentDictionary;
+- (IBAction)startStop:(id)sender;
 @end
