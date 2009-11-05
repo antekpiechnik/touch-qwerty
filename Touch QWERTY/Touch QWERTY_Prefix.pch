@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Touch QWERTY' target in the 'Touch QWERTY' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
