@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="57"/>
-			<integer value="372"/>
+			<integer value="371"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1115,11 +1115,11 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{335, 342}, {480, 408}}</string>
 				<int key="NSWTFlags">1946157056</int>
-				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowTitle">Touch QWERTY</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -1250,22 +1250,22 @@
 								</object>
 							</object>
 						</object>
-						<object class="NSButton" id="853912039">
+						<object class="NSButton" id="205141262">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{162, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSButtonCell" key="NSCell" id="614757166">
+							<object class="NSButtonCell" key="NSCell" id="30068701">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Start</string>
 								<reference key="NSSupport" ref="623534049"/>
-								<reference key="NSControlView" ref="853912039"/>
+								<reference key="NSControlView" ref="205141262"/>
 								<int key="NSButtonFlags">-2038284033</int>
-								<int key="NSButtonFlags2">129</int>
+								<int key="NSButtonFlags2">268435585</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string key="NSKeyEquivalent">s</string>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
@@ -1827,7 +1827,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">startStop:</string>
 						<reference key="source" ref="414477589"/>
-						<reference key="destination" ref="853912039"/>
+						<reference key="destination" ref="205141262"/>
 					</object>
 					<int key="connectionID">459</int>
 				</object>
@@ -2417,7 +2417,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="266139849"/>
 							<reference ref="200626045"/>
-							<reference ref="853912039"/>
+							<reference ref="205141262"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -2757,17 +2757,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">455</int>
-						<reference key="object" ref="853912039"/>
+						<reference key="object" ref="205141262"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="614757166"/>
+							<reference ref="30068701"/>
 						</object>
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">456</int>
-						<reference key="object" ref="614757166"/>
-						<reference key="parent" ref="853912039"/>
+						<reference key="object" ref="30068701"/>
+						<reference key="parent" ref="205141262"/>
 					</object>
 				</object>
 			</object>

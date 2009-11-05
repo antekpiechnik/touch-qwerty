@@ -22,10 +22,22 @@
 - (IBAction)startStop:(id)sender {
 	if (gameIsRunning) {
 		[sender setTitle:@"Start"];
+		[self stopGame];
 	} else {
 		[sender setTitle:@"Stop"];
+		[self startGame];
 	}
-	gameIsRunning = ! gameIsRunning;
+}
+
+- (void)startGame {
+	[dictionaryComboBox setEnabled:NO];
+	[self addWord];
+	gameIsRunning = YES;
+}
+
+- (void)stopGame {
+	[dictionaryComboBox setEnabled:YES];
+	gameIsRunning = NO;
 }
 
 - (void)awakeFromNib {
@@ -49,5 +61,12 @@
 
 - (Dictionary *)currentDictionary {
 	return [dictionaries objectForKey:[dictionaryComboBox objectValueOfSelectedItem]];
+}
+
+- (void)addWord {
+	Dictionary *dict;
+	
+	dict = [self currentDictionary];
+	NSLog(@"Word: %@", [dict nextWord]);
 }
 @end

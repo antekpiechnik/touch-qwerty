@@ -10,7 +10,7 @@
 #import "Dictionary.h"
 
 
-@interface FileDictionary : Dictionary {
+@interface FileDictionary : Dictionary <DictionaryProtocol> {
 	NSArray *words;
 }
 

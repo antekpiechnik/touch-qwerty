@@ -19,4 +19,7 @@
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;
 - (Dictionary *)currentDictionary;
 - (IBAction)startStop:(id)sender;
+- (void)startGame;
+- (void)stopGame;
+- (void)addWord;
 @end

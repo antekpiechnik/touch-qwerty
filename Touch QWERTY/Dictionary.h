@@ -10,8 +10,7 @@
 #import "DictionaryProtocol.h"
 
 
-@interface Dictionary : NSObject <DictionaryProtocol> {
-
+@interface Dictionary : NSObject {
 }
-
+- (NSString *)nextWord;
 @end

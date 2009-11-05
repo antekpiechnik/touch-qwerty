@@ -21,6 +21,7 @@
 													error:nil];
 		separator = [NSCharacterSet newlineCharacterSet];
 		words = [fileContents componentsSeparatedByCharactersInSet:separator];
+		[words retain];
 	}
 	return self;
 }
@@ -28,11 +29,16 @@
 - (NSString *)nextWord {
 	NSUInteger randomIndex;
 	
-	randomIndex = rand() % [words count];
+	randomIndex = rand() % [self count];
 	return [words objectAtIndex:randomIndex];
 }
 
 - (NSUInteger)count {
 	return [words count];
+}
+
+- (void)dealloc {
+	[words release];
+	[super dealloc];
 }
 @end
