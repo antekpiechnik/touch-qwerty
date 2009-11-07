@@ -1839,6 +1839,14 @@
 					</object>
 					<int key="connectionID">460</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">startStopButton</string>
+						<reference key="source" ref="414477589"/>
+						<reference key="destination" ref="931654223"/>
+					</object>
+					<int key="connectionID">461</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3252,7 +3260,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">460</int>
+			<int key="maxID">461</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3278,11 +3286,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>boardView</string>
 							<string>dictionaryComboBox</string>
+							<string>startStopButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>BoardView</string>
 							<string>NSComboBox</string>
+							<string>NSButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

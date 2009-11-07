@@ -15,6 +15,7 @@
 	if (self) {
 		dictionaries = [[NSMutableDictionary alloc] initWithCapacity: 4];
 		words = [[NSMutableArray alloc] initWithCapacity:16];
+		lock = [[NSLock alloc] init];
 		gameIsRunning = NO;
 	}
 	return self;
@@ -22,16 +23,15 @@
 
 - (IBAction)startStop:(id)sender {
 	if (gameIsRunning) {
-		[sender setTitle:@"Start"];
 		[self stopGame];
 	} else {
-		[sender setTitle:@"Stop"];
 		[self startGame];
 	}
 }
 
 - (void)startGame {
 	gameIsRunning = YES;
+	[startStopButton setTitle:@"Stop"];
 	[dictionaryComboBox setEnabled:NO];
 	[NSThread detachNewThreadSelector:@selector(wordGenerator) toTarget:self withObject:nil];
 	[NSThread detachNewThreadSelector:@selector(wordReposition) toTarget:self withObject:nil];
@@ -42,6 +42,7 @@
 	NSTextField *word;
 	
 	gameIsRunning = NO;
+	[startStopButton setTitle:@"Start"];
 	[dictionaryComboBox setEnabled:YES];
 	it = [words objectEnumerator];
 	while (word = [it nextObject]) {
@@ -81,7 +82,7 @@
 	
 	dict = [self currentDictionary];
 	word = [dict nextWord];
-	rect = NSMakeRect((NSUInteger)([boardView frame].size.width - 50),
+	rect = NSMakeRect((NSUInteger)([boardView frame].size.width),
 					  rand() % (NSUInteger)([boardView frame].size.height),
 					  1,
 					  1);
@@ -99,8 +100,13 @@
 }
 
 - (void)wordGenerator {
+	NSAutoreleasePool *pool;
+	
+	pool = [[NSAutoreleasePool alloc] init];
 	while (gameIsRunning) {
+		[lock lock];
 		[self addWord];
+		[lock unlock];
 		[NSThread sleepForTimeInterval:1];
 	}
 }
@@ -109,14 +115,25 @@
 	NSEnumerator *it;
 	NSTextField *word;
 	NSPoint origin;
+	NSAutoreleasePool *pool;
+	BOOL stop;
 	
+	stop = NO;
+	pool = [[NSAutoreleasePool alloc] init];
 	while (gameIsRunning) {
+		[lock lock];
 		it = [words objectEnumerator];
 		while (word = [it nextObject]) {
 			origin = [word frame].origin;
-			[word setFrameOrigin:NSMakePoint(origin.x - 1, origin.y)];
+			[word setFrameOrigin:NSMakePoint(origin.x - 2, origin.y)];
+			if (origin.x - 1 <= 0) {
+				stop = YES;			}
 		}
-		[NSThread sleepForTimeInterval:1];
+		[lock unlock];
+		if (stop) {
+			[self stopGame];
+		}
+		usleep(25000);
 	}
 }
 @end
