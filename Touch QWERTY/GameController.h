@@ -25,4 +25,6 @@
 - (void)startGame;
 - (void)stopGame;
 - (void)addWord;
+- (void)wordGenerator;
+- (void)wordReposition;
 @end
