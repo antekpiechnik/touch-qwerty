@@ -14,13 +14,13 @@
 
 
 @interface GameController : NSObject {
-	NSMutableDictionary *dictionaries;
-	NSMutableArray *words;
-	NSLock *lock;
-	IBOutlet NSComboBox *dictionaryComboBox;
-	IBOutlet BoardView *boardView;
-	IBOutlet NSButton *startStopButton;
-	bool gameIsRunning;
+    NSMutableDictionary *dictionaries;
+    NSMutableArray *words;
+    NSLock *lock;
+    IBOutlet NSComboBox *dictionaryComboBox;
+    IBOutlet BoardView *boardView;
+    IBOutlet NSButton *startStopButton;
+    bool gameIsRunning;
 }
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;
 - (Dictionary *)currentDictionary;

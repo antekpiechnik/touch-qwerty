@@ -63,11 +63,11 @@
                                                   green:0.0
                                                    blue:0.0
                                                   alpha:alpha]];
-	}
+    }
 }
 
 - (BOOL)shouldBeRemoved {
-	return ! [[self stringValue] caseInsensitiveCompare:typed];
+    return ! [[self stringValue] caseInsensitiveCompare:typed];
 }
 
 - (void)clearTypedLetters {
