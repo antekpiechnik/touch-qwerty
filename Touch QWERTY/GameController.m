@@ -129,11 +129,24 @@
 - (void)keyDown:(NSString *)c {
 	Word *word;
 	NSEnumerator *it;
+	NSMutableArray *toRemove;
 	
+	toRemove = [[NSMutableArray alloc] initWithCapacity:2];
 	it = [words objectEnumerator];
 	[lock lock];
 	while (word = [it nextObject]) {
 		[word updateWithLetter:c];
+		if ([word shouldBeRemoved]) {
+			[word removeFromSuperview];
+			[toRemove addObject:word];
+		}
+	}
+	if ([toRemove count] > 0) {
+		[words removeObjectsInArray:toRemove];
+		it = [words objectEnumerator];
+		while (word = [it nextObject]) {
+			[word clearTypedLetters];
+		}
 	}
 	[lock unlock];
 }

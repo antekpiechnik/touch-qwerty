@@ -11,6 +11,6 @@
 
 @implementation Dictionary
 - (NSString *)nextWord {
-	return @"";
+    return @"";
 }
 @end

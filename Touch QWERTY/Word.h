@@ -10,9 +10,11 @@
 
 
 @interface Word : NSTextField {
-	NSString *typed;
+    NSString *typed;
 }
 - (id)initWithFrame:(NSRect)frame word:(NSString *)word;
 - (BOOL)reposition;
 - (void)updateWithLetter:(NSString *)letter;
+- (BOOL)shouldBeRemoved;
+- (void)clearTypedLetters;
 @end

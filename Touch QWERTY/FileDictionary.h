@@ -11,7 +11,7 @@
 
 
 @interface FileDictionary : Dictionary <DictionaryProtocol> {
-	NSArray *words;
+    NSArray *words;
 }
 
 - (id)initWithFilename:(NSString *)filename;

@@ -11,34 +11,34 @@
 
 @implementation FileDictionary
 - (id)initWithFilename:(NSString *)path {
-	NSString *fileContents;
-	NSCharacterSet *separator;
-	
-	self = [super init];
-	if (self) {
-		fileContents = [NSString stringWithContentsOfFile:path
-												 encoding:NSUTF8StringEncoding
-													error:nil];
-		separator = [NSCharacterSet newlineCharacterSet];
-		words = [fileContents componentsSeparatedByCharactersInSet:separator];
-		[words retain];
-	}
-	return self;
+    NSString *fileContents;
+    NSCharacterSet *separator;
+    
+    self = [super init];
+    if (self) {
+        fileContents = [NSString stringWithContentsOfFile:path
+                                                 encoding:NSUTF8StringEncoding
+                                                    error:nil];
+        separator = [NSCharacterSet newlineCharacterSet];
+        words = [fileContents componentsSeparatedByCharactersInSet:separator];
+        [words retain];
+    }
+    return self;
 }
 
 - (NSString *)nextWord {
-	NSUInteger randomIndex;
-	
-	randomIndex = rand() % [self count];
-	return [words objectAtIndex:randomIndex];
+    NSUInteger randomIndex;
+    
+    randomIndex = rand() % [self count];
+    return [words objectAtIndex:randomIndex];
 }
 
 - (NSUInteger)count {
-	return [words count];
+    return [words count];
 }
 
 - (void)dealloc {
-	[words release];
-	[super dealloc];
+    [words release];
+    [super dealloc];
 }
 @end
