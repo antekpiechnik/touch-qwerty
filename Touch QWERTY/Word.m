@@ -40,7 +40,7 @@
     return [self frame].origin.x <= 0;
 }
 
-- (void)updateWithLetter:(NSString *)letter {
+- (BOOL)updateWithLetter:(NSString *)letter {
     NSString *newType;
     NSMutableAttributedString *value;
     double alpha;
@@ -60,10 +60,12 @@
             alpha = 1.0;
         }
         [self setTextColor:[NSColor colorWithCalibratedRed:0.0
-                                                  green:0.0
-                                                   blue:0.0
-                                                  alpha:alpha]];
+                                                     green:0.0
+                                                      blue:0.0
+                                                     alpha:alpha]];
+        return YES;
     }
+    return NO;
 }
 
 - (BOOL)shouldBeRemoved {

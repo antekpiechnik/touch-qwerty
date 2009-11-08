@@ -14,7 +14,7 @@
 }
 - (id)initWithFrame:(NSRect)frame word:(NSString *)word;
 - (BOOL)reposition;
-- (void)updateWithLetter:(NSString *)letter;
+- (BOOL)updateWithLetter:(NSString *)letter;
 - (BOOL)shouldBeRemoved;
 - (void)clearTypedLetters;
 @end

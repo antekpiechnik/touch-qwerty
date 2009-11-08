@@ -33,6 +33,7 @@
     gameIsRunning = YES;
     [dictionaryComboBox setEnabled:NO];
     [startStopButton setEnabled:NO];
+    [pointsTextField setIntegerValue:0];
     [NSThread detachNewThreadSelector:@selector(wordGenerator) toTarget:self withObject:nil];
     [NSThread detachNewThreadSelector:@selector(wordReposition) toTarget:self withObject:nil];
 }
@@ -130,16 +131,28 @@
     Word *word;
     NSEnumerator *it;
     NSMutableArray *toRemove;
-    
+    BOOL valid;
+    NSUInteger points;
+
+    valid = NO;
+    points = 0;
     toRemove = [[NSMutableArray alloc] initWithCapacity:2];
     it = [words objectEnumerator];
     [lock lock];
     while (word = [it nextObject]) {
-        [word updateWithLetter:c];
+        if ([word updateWithLetter:c]) {
+            valid = YES;
+        }
         if ([word shouldBeRemoved]) {
             [word removeFromSuperview];
             [toRemove addObject:word];
+            points += [[word stringValue] length];
         }
+    }
+    if (! valid) { // minus points, nothing matched
+        [self updatePoints:-5];
+    } else { // adding points
+        [self updatePoints:points];
     }
     if ([toRemove count] > 0) {
         [words removeObjectsInArray:toRemove];
@@ -149,5 +162,16 @@
         }
     }
     [lock unlock];
+}
+
+- (void)updatePoints:(NSInteger)points {
+    NSInteger current;
+    
+    current = [pointsTextField integerValue];
+    current += points;
+    if (current < 0) {
+        current = 0;
+    }
+    [pointsTextField setIntegerValue:current];
 }
 @end

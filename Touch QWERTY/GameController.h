@@ -20,6 +20,7 @@
     IBOutlet NSComboBox *dictionaryComboBox;
     IBOutlet BoardView *boardView;
     IBOutlet NSButton *startStopButton;
+    IBOutlet NSTextField *pointsTextField;
     bool gameIsRunning;
 }
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;
@@ -31,4 +32,5 @@
 - (void)wordGenerator;
 - (void)wordReposition;
 - (void)keyDown:(NSString *)c;
+- (void)updatePoints:(NSInteger)points;
 @end
