@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Dictionary.h"
 #import "FileDictionary.h"
+#import "RandomDictionary.h"
 #import "BoardView.h"
 #import "Word.h"
 
@@ -26,8 +27,10 @@
     NSUInteger points;
     NSUInteger correctHits;
     NSUInteger totalHits;
+    NSUInteger totalWords;
 }
-- (void)registerDictionary:(NSString *)path withName:(NSString *)name;
+- (void)registerDictionary:(Dictionary *)dict withName:(NSString *)name;
+- (void)registerFileDictionary:(NSString *)path withName:(NSString *)name;
 - (Dictionary *)currentDictionary;
 - (IBAction)startStop:(id)sender;
 - (void)startGame;
@@ -36,7 +39,7 @@
 - (void)wordGenerator;
 - (void)wordReposition;
 - (void)keyDown:(NSString *)c;
-- (void)updatePoints:(NSInteger)newPoints validHit:(BOOL)validHit;
+- (void)updatePoints:(NSInteger)newPoints words:(NSUInteger)wordsRemoved validHit:(BOOL)validHit;
 - (void)updateStatsView;
 - (void)resetStats;
 @end

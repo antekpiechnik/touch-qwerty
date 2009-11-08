@@ -20,6 +20,7 @@
         points = 0;
         correctHits = 0;
         totalHits = 0;
+        totalWords = 0;
     }
     return self;
 }
@@ -58,13 +59,15 @@
 }
 
 - (void)awakeFromNib {
-    [self registerDictionary: @"EnglishWords.txt" withName: @"English words"];
+    [self registerFileDictionary:@"EnglishWords.txt" withName:@"English words"];
+    [self registerDictionary:[[RandomDictionary alloc] initWithRange:NSMakeRange(5, 7)]
+                    withName:@"Random words (5..7)"];
     [dictionaryComboBox addItemsWithObjectValues:[dictionaries allKeys]];
     [dictionaryComboBox selectItemAtIndex:0];
     [self resetStats];
 }
 
-- (void)registerDictionary:(NSString *)path withName:(NSString *)name {
+- (void)registerFileDictionary:(NSString *)path withName:(NSString *)name {
     FileDictionary *dict;
     NSString *fullPath, *fileName, *extension;
     
@@ -72,8 +75,12 @@
     extension = [path pathExtension];
     fullPath = [[NSBundle mainBundle] pathForResource:fileName ofType:extension];
     dict = [[FileDictionary alloc] initWithFilename:fullPath];
+    [self registerDictionary:dict withName:name];
+}
+
+- (void)registerDictionary:(Dictionary *)dict withName:(NSString *)name {
     [dictionaries setObject:dict forKey:name];
-    NSLog(@"Registered dictionary with name %@ (count: %d)", name, [dict count]);
+    NSLog(@"Registered dictionary with name %@", name);
 }
 
 - (Dictionary *)currentDictionary {
@@ -141,9 +148,10 @@
     Word *word;
     NSEnumerator *it;
     NSMutableArray *toRemove;
-    BOOL valid;
+    BOOL valid, wordsRemoved;
     NSUInteger newPoints;
 
+    wordsRemoved = 0;
     if (! gameIsRunning) return;
     valid = NO;
     newPoints = 0;
@@ -155,15 +163,16 @@
             valid = YES;
         }
         if ([word shouldBeRemoved]) {
+            wordsRemoved += 1;
             [word removeFromSuperview];
             [toRemove addObject:word];
             newPoints += [[word stringValue] length];
         }
     }
     if (! valid) { // minus points, nothing matched
-        [self updatePoints:-5 validHit:false];
+        [self updatePoints:-5 words:wordsRemoved validHit:false];
     } else { // adding points
-        [self updatePoints:newPoints validHit:true];
+        [self updatePoints:newPoints words:wordsRemoved validHit:true];
     }
     if ([toRemove count] > 0) {
         [words removeObjectsInArray:toRemove];
@@ -179,10 +188,11 @@
     points = 0;
     correctHits = 0;
     totalHits = 0;
+    totalWords = 0;
     [self updateStatsView];
 }
 
-- (void)updatePoints:(NSInteger)newPoints validHit:(BOOL)validHit {
+- (void)updatePoints:(NSInteger)newPoints words:(NSUInteger)wordsRemoved validHit:(BOOL)validHit {
     if ((NSInteger)points + newPoints < 0) {
         points = 0;
     } else {
@@ -191,6 +201,7 @@
 
     totalHits += 1;
     if (validHit) correctHits += 1;
+    totalWords += wordsRemoved;
     [self updateStatsView];
 }
 
@@ -202,10 +213,11 @@
     } else {
         perc = 100.0 * correctHits / totalHits;
     }
-    [pointsTextField setStringValue:[NSString stringWithFormat:@"pts:%d", points]];
-    [statsTextField setStringValue:[NSString stringWithFormat:@"%d/%d (%.2f%%)",
+    [pointsTextField setStringValue:[NSString stringWithFormat:@"pts:%u", points]];
+    [statsTextField setStringValue:[NSString stringWithFormat:@"%u/%u/%u (%.2f%%)",
                                     correctHits,
                                     totalHits,
+                                    totalWords,
                                     perc]];
 }
 @end

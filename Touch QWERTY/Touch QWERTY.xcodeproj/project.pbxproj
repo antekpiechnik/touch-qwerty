@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E46700710A706F1001DC598 /* RandomDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E46700610A706F1001DC598 /* RandomDictionary.m */; };
 		0E9CCE7310A6BD6500C07BD8 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9CCE7210A6BD6500C07BD8 /* Word.m */; };
 		0EA58AE210A2D7D6007C5CC4 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA58AE110A2D7D6007C5CC4 /* BoardView.m */; };
 		0EEAE01310A2EDE800A4C8B6 /* EnglishWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0EEAE01210A2EDE800A4C8B6 /* EnglishWords.txt */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0E46700510A706F1001DC598 /* RandomDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomDictionary.h; sourceTree = "<group>"; };
+		0E46700610A706F1001DC598 /* RandomDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomDictionary.m; sourceTree = "<group>"; };
 		0E9CCE7110A6BD6500C07BD8 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		0E9CCE7210A6BD6500C07BD8 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		0EA58AE010A2D7D6007C5CC4 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -86,6 +89,8 @@
 				0EEAE01910A2EE7600A4C8B6 /* FileDictionary.m */,
 				0EEE610710A31AA700A9D0F2 /* Dictionary.h */,
 				0EEE610810A31AA700A9D0F2 /* Dictionary.m */,
+				0E46700510A706F1001DC598 /* RandomDictionary.h */,
+				0E46700610A706F1001DC598 /* RandomDictionary.m */,
 			);
 			name = Dictonary;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				0EEAE05310A2F16A00A4C8B6 /* GameController.m in Sources */,
 				0EEE610910A31AA700A9D0F2 /* Dictionary.m in Sources */,
 				0E9CCE7310A6BD6500C07BD8 /* Word.m in Sources */,
+				0E46700710A706F1001DC598 /* RandomDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
