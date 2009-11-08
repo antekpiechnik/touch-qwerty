@@ -17,6 +17,9 @@
         words = [[NSMutableArray alloc] initWithCapacity:16];
         lock = [[NSLock alloc] init];
         gameIsRunning = NO;
+        points = 0;
+        correctHits = 0;
+        totalHits = 0;
     }
     return self;
 }
@@ -34,6 +37,7 @@
     [dictionaryComboBox setEnabled:NO];
     [startStopButton setEnabled:NO];
     [pointsTextField setIntegerValue:0];
+    [self resetStats];
     [NSThread detachNewThreadSelector:@selector(wordGenerator) toTarget:self withObject:nil];
     [NSThread detachNewThreadSelector:@selector(wordReposition) toTarget:self withObject:nil];
 }
@@ -79,13 +83,18 @@
     Dictionary *dict;
     Word *word;
     NSRect rect;
+    float speed;
     
+    speed = 0.4 + (float)(rand() % 100) / 100.0;
     dict = [self currentDictionary];
     rect = NSMakeRect((NSUInteger)([boardView frame].size.width),
                       rand() % (NSUInteger)([boardView frame].size.height),
                       1,
                       1);
-    word = [[Word alloc] initWithFrame:rect word:[dict nextWord]];
+    if (rect.origin.y <= 60.0) {
+        rect.origin.y = 60.0;
+    }
+    word = [[Word alloc] initWithFrame:rect word:[dict nextWord] andSpeed:speed];
     [words addObject:word];
     [boardView addSubview:word];
     [boardView setNeedsDisplay:YES];
@@ -123,7 +132,7 @@
         if (stop) {
             [self stopGame];
         }
-        usleep(25000);
+        usleep(40000);
     }
 }
 
@@ -132,10 +141,11 @@
     NSEnumerator *it;
     NSMutableArray *toRemove;
     BOOL valid;
-    NSUInteger points;
+    NSUInteger newPoints;
 
+    if (! gameIsRunning) return;
     valid = NO;
-    points = 0;
+    newPoints = 0;
     toRemove = [[NSMutableArray alloc] initWithCapacity:2];
     it = [words objectEnumerator];
     [lock lock];
@@ -146,13 +156,13 @@
         if ([word shouldBeRemoved]) {
             [word removeFromSuperview];
             [toRemove addObject:word];
-            points += [[word stringValue] length];
+            newPoints += [[word stringValue] length];
         }
     }
     if (! valid) { // minus points, nothing matched
-        [self updatePoints:-5];
+        [self updatePoints:-5 validHit:false];
     } else { // adding points
-        [self updatePoints:points];
+        [self updatePoints:newPoints validHit:true];
     }
     if ([toRemove count] > 0) {
         [words removeObjectsInArray:toRemove];
@@ -164,14 +174,37 @@
     [lock unlock];
 }
 
-- (void)updatePoints:(NSInteger)points {
-    NSInteger current;
-    
-    current = [pointsTextField integerValue];
-    current += points;
-    if (current < 0) {
-        current = 0;
+- (void)resetStats {
+    points = 0;
+    correctHits = 0;
+    totalHits = 0;
+    [self updateStatsView];
+}
+
+- (void)updatePoints:(NSInteger)newPoints validHit:(BOOL)validHit {
+    if ((NSInteger)points + newPoints < 0) {
+        points = 0;
+    } else {
+        points += newPoints;
     }
-    [pointsTextField setIntegerValue:current];
+
+    totalHits += 1;
+    if (validHit) correctHits += 1;
+    [self updateStatsView];
+}
+
+- (void)updateStatsView {
+    float perc;
+    
+    if (totalHits == 0) {
+        perc = 0.0;
+    } else {
+        perc = 100.0 * correctHits / totalHits;
+    }
+    [pointsTextField setStringValue:[NSString stringWithFormat:@"pts:%d", points]];
+    [statsTextField setStringValue:[NSString stringWithFormat:@"%d/%d (%.2f)",
+                                    correctHits,
+                                    totalHits,
+                                    perc]];
 }
 @end

@@ -21,7 +21,11 @@
     IBOutlet BoardView *boardView;
     IBOutlet NSButton *startStopButton;
     IBOutlet NSTextField *pointsTextField;
+    IBOutlet NSTextField *statsTextField;    
     bool gameIsRunning;
+    NSUInteger points;
+    NSUInteger correctHits;
+    NSUInteger totalHits;
 }
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name;
 - (Dictionary *)currentDictionary;
@@ -32,5 +36,7 @@
 - (void)wordGenerator;
 - (void)wordReposition;
 - (void)keyDown:(NSString *)c;
-- (void)updatePoints:(NSInteger)points;
+- (void)updatePoints:(NSInteger)newPoints validHit:(BOOL)validHit;
+- (void)updateStatsView;
+- (void)resetStats;
 @end

@@ -11,8 +11,9 @@
 
 @interface Word : NSTextField {
     NSString *typed;
+    float speed;
 }
-- (id)initWithFrame:(NSRect)frame word:(NSString *)word;
+- (id)initWithFrame:(NSRect)frame word:(NSString *)word andSpeed:(float)speed;
 - (BOOL)reposition;
 - (BOOL)updateWithLetter:(NSString *)letter;
 - (BOOL)shouldBeRemoved;

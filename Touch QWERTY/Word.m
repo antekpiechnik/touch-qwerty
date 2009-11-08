@@ -11,7 +11,7 @@
 
 @implementation Word
 
-- (id)initWithFrame:(NSRect)frame word:(NSString *)word {
+- (id)initWithFrame:(NSRect)frame word:(NSString *)word andSpeed:(float)aSpeed {
     self = [super initWithFrame:frame];
     if (self) {
         // the correct size will be computed with sizeToFit method
@@ -23,6 +23,7 @@
         [self setFont:[NSFont fontWithName:@"Futura" size:20.0]];
         [self setStringValue:word];
         [self sizeToFit];
+        speed = aSpeed;
         typed = @"";
     }
     return self;
@@ -36,7 +37,7 @@
     NSPoint origin;
 
     origin = [self frame].origin;
-    [self setFrameOrigin:NSMakePoint(origin.x - 2, origin.y)];
+    [self setFrameOrigin:NSMakePoint(origin.x - speed, origin.y)];
     return [self frame].origin.x <= 0;
 }
 
