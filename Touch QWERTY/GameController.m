@@ -61,6 +61,7 @@
     [self registerDictionary: @"EnglishWords.txt" withName: @"English words"];
     [dictionaryComboBox addItemsWithObjectValues:[dictionaries allKeys]];
     [dictionaryComboBox selectItemAtIndex:0];
+    [self resetStats];
 }
 
 - (void)registerDictionary:(NSString *)path withName:(NSString *)name {
@@ -91,8 +92,8 @@
                       rand() % (NSUInteger)([boardView frame].size.height),
                       1,
                       1);
-    if (rect.origin.y <= 60.0) {
-        rect.origin.y = 60.0;
+    if (rect.origin.y > [boardView frame].origin.y - 15.0) {
+        rect.origin.y -= 15.0;
     }
     word = [[Word alloc] initWithFrame:rect word:[dict nextWord] andSpeed:speed];
     [words addObject:word];
@@ -108,7 +109,7 @@
         [lock lock];
         [self addWord];
         [lock unlock];
-        [NSThread sleepForTimeInterval:1];
+        [NSThread sleepForTimeInterval:2];
     }
 }
 
@@ -202,7 +203,7 @@
         perc = 100.0 * correctHits / totalHits;
     }
     [pointsTextField setStringValue:[NSString stringWithFormat:@"pts:%d", points]];
-    [statsTextField setStringValue:[NSString stringWithFormat:@"%d/%d (%.2f)",
+    [statsTextField setStringValue:[NSString stringWithFormat:@"%d/%d (%.2f%%)",
                                     correctHits,
                                     totalHits,
                                     perc]];

@@ -1117,7 +1117,7 @@
 			<object class="NSWindowTemplate" id="972006081">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{335, 342}, {480, 408}}</string>
+				<string key="NSWindowRect">{{335, 343}, {645, 407}}</string>
 				<int key="NSWTFlags">1946157056</int>
 				<string key="NSWindowTitle">Touch QWERTY</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -1131,14 +1131,14 @@
 						<object class="NSCustomView" id="266139849">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{0, 48}, {480, 360}}</string>
+							<string key="NSFrame">{{0, 47}, {645, 360}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">BoardView</string>
 						</object>
 						<object class="NSComboBox" id="200626045">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 16}, {143, 26}}</string>
+							<string key="NSFrame">{{20, 15}, {143, 26}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSComboBoxCell" key="NSCell" id="64998456">
@@ -1253,7 +1253,7 @@
 						<object class="NSButton" id="931654223">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{162, 12}, {96, 32}}</string>
+							<string key="NSFrame">{{162, 11}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="882043088">
@@ -1273,7 +1273,7 @@
 						<object class="NSTextField" id="504740705">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{267, 16}, {77, 26}}</string>
+							<string key="NSFrame">{{411, 16}, {94, 26}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="326799111">
@@ -1286,7 +1286,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 								<reference key="NSControlView" ref="504740705"/>
-								<object class="NSColor" key="NSBackgroundColor" id="727601199">
+								<object class="NSColor" key="NSBackgroundColor" id="812403593">
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>
 									<string key="NSColorName">controlColor</string>
@@ -1295,13 +1295,13 @@
 								<reference key="NSTextColor" ref="703437407"/>
 							</object>
 						</object>
-						<object class="NSTextField" id="668119815">
+						<object class="NSTextField" id="144651062">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{329, 18}, {135, 23}}</string>
+							<string key="NSFrame">{{499, 20}, {135, 23}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="98136351">
+							<object class="NSTextFieldCell" key="NSCell" id="174077452">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">71304192</int>
 								<string key="NSContents">0/0 (0.00)</string>
@@ -1310,13 +1310,13 @@
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<reference key="NSControlView" ref="668119815"/>
-								<reference key="NSBackgroundColor" ref="727601199"/>
+								<reference key="NSControlView" ref="144651062"/>
+								<reference key="NSBackgroundColor" ref="812403593"/>
 								<reference key="NSTextColor" ref="703437407"/>
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{480, 408}</string>
+					<string key="NSFrameSize">{645, 407}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -1920,7 +1920,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">statsTextField</string>
 						<reference key="source" ref="414477589"/>
-						<reference key="destination" ref="668119815"/>
+						<reference key="destination" ref="144651062"/>
 					</object>
 					<int key="connectionID">469</int>
 				</object>
@@ -2508,11 +2508,11 @@
 						<reference key="object" ref="439893737"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="266139849"/>
 							<reference ref="200626045"/>
 							<reference ref="931654223"/>
 							<reference ref="504740705"/>
-							<reference ref="668119815"/>
+							<reference ref="144651062"/>
+							<reference ref="266139849"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -2880,17 +2880,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">467</int>
-						<reference key="object" ref="668119815"/>
+						<reference key="object" ref="144651062"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="98136351"/>
+							<reference ref="174077452"/>
 						</object>
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">468</int>
-						<reference key="object" ref="98136351"/>
-						<reference key="parent" ref="668119815"/>
+						<reference key="object" ref="174077452"/>
+						<reference key="parent" ref="144651062"/>
 					</object>
 				</object>
 			</object>
@@ -3259,9 +3259,9 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{335, 342}, {480, 408}}</string>
+					<string>{{335, 343}, {645, 407}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{335, 342}, {480, 408}}</string>
+					<string>{{335, 343}, {645, 407}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
