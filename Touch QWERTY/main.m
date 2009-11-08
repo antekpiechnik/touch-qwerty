@@ -10,6 +10,6 @@
 
 int main(int argc, char *argv[])
 {
-    srandom(time(NULL));
+    srand([[NSDate date] timeIntervalSince1970]);
     return NSApplicationMain(argc,  (const char **) argv);
 }

@@ -99,8 +99,8 @@
                       rand() % (NSUInteger)([boardView frame].size.height),
                       1,
                       1);
-    if (rect.origin.y > [boardView frame].origin.y - 15.0) {
-        rect.origin.y -= 15.0;
+    if (rect.origin.y > [boardView frame].origin.y - 25.0) {
+        rect.origin.y -= 25.0;
     }
     word = [[Word alloc] initWithFrame:rect word:[dict nextWord] andSpeed:speed];
     [words addObject:word];
@@ -110,13 +110,18 @@
 
 - (void)wordGenerator {
     NSAutoreleasePool *pool;
+    float sleepTime;
     
     pool = [[NSAutoreleasePool alloc] init];
     while (gameIsRunning) {
         [lock lock];
         [self addWord];
         [lock unlock];
-        [NSThread sleepForTimeInterval:2];
+        
+        // empirical sleep time randomized a bit
+        sleepTime = 7000000 / (log10f(correctHits * 1.0 + 30.0) / log10f(6.5));
+        sleepTime -= rand() % (int)(0.2 * sleepTime);
+        usleep(sleepTime);
     }
 }
 
