@@ -10,6 +10,7 @@
 #import "Dictionary.h"
 #import "FileDictionary.h"
 #import "BoardView.h"
+#import "Word.h"
 
 
 @interface GameController : NSObject {
@@ -29,4 +30,5 @@
 - (void)addWord;
 - (void)wordGenerator;
 - (void)wordReposition;
+- (void)keyDown:(NSString *)c;
 @end

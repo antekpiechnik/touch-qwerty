@@ -10,6 +10,7 @@
 
 
 @interface BoardView : NSView {
+    IBOutlet id *gameController;
 }
 
 @end

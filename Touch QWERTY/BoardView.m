@@ -19,7 +19,17 @@
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    NSLog(@"Drawing BoardView");
+}
+
+- (BOOL)acceptsFirstResponder {
+    return YES;
+}
+
+- (void)keyDown:(NSEvent *)theEvent {
+    NSString *c;
+    
+    c = [[theEvent characters] lowercaseString];
+    [gameController keyDown:c];
 }
 
 @end

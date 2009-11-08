@@ -31,8 +31,8 @@
 
 - (void)startGame {
 	gameIsRunning = YES;
-	[startStopButton setTitle:@"Stop"];
 	[dictionaryComboBox setEnabled:NO];
+	[startStopButton setEnabled:NO];
 	[NSThread detachNewThreadSelector:@selector(wordGenerator) toTarget:self withObject:nil];
 	[NSThread detachNewThreadSelector:@selector(wordReposition) toTarget:self withObject:nil];
 }
@@ -42,8 +42,8 @@
 	NSTextField *word;
 	
 	gameIsRunning = NO;
-	[startStopButton setTitle:@"Start"];
 	[dictionaryComboBox setEnabled:YES];
+	[startStopButton setEnabled:YES];
 	it = [words objectEnumerator];
 	while (word = [it nextObject]) {
 		[word removeFromSuperview];
@@ -76,26 +76,17 @@
 
 - (void)addWord {
 	Dictionary *dict;
-	NSString *word;
-	NSTextField *textField;
+	Word *word;
 	NSRect rect;
 	
 	dict = [self currentDictionary];
-	word = [dict nextWord];
 	rect = NSMakeRect((NSUInteger)([boardView frame].size.width),
 					  rand() % (NSUInteger)([boardView frame].size.height),
 					  1,
 					  1);
-	textField = [[NSTextField alloc] initWithFrame:rect];
-	[textField setBackgroundColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.0]];
-	[textField setEditable:NO];
-	[textField setBezeled:NO];
-	[textField setBordered:NO];
-	[textField setStringValue:word];
-	[textField setFont:[NSFont fontWithName:@"Futura" size:20.0]];
-	[textField sizeToFit];
-	[words addObject:textField];
-	[boardView addSubview:textField];
+	word = [[Word alloc] initWithFrame:rect word:[dict nextWord]];
+	[words addObject:word];
+	[boardView addSubview:word];
 	[boardView setNeedsDisplay:YES];
 }
 
@@ -113,8 +104,7 @@
 
 - (void)wordReposition {
 	NSEnumerator *it;
-	NSTextField *word;
-	NSPoint origin;
+	Word *word;
 	NSAutoreleasePool *pool;
 	BOOL stop;
 	
@@ -124,10 +114,9 @@
 		[lock lock];
 		it = [words objectEnumerator];
 		while (word = [it nextObject]) {
-			origin = [word frame].origin;
-			[word setFrameOrigin:NSMakePoint(origin.x - 2, origin.y)];
-			if (origin.x - 1 <= 0) {
-				stop = YES;			}
+			if ([word reposition]) {
+				stop = YES;
+			}
 		}
 		[lock unlock];
 		if (stop) {
@@ -135,5 +124,17 @@
 		}
 		usleep(25000);
 	}
+}
+
+- (void)keyDown:(NSString *)c {
+	Word *word;
+	NSEnumerator *it;
+	
+	it = [words objectEnumerator];
+	[lock lock];
+	while (word = [it nextObject]) {
+		[word updateWithLetter:c];
+	}
+	[lock unlock];
 }
 @end
