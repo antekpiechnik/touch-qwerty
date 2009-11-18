@@ -13,7 +13,8 @@
 - (id) init {
     self = [super init];
     if (self) {
-        dictionaries = [[NSMutableDictionary alloc] initWithCapacity: 4];
+        dictionaries = [[NSMutableDictionary alloc] initWithCapacity:4];
+        dictionariesOrder = [[NSMutableArray alloc] initWithCapacity:4];
         words = [[NSMutableArray alloc] initWithCapacity:16];
         lock = [[NSLock alloc] init];
         gameIsRunning = NO;
@@ -63,7 +64,7 @@
     [self registerFileDictionary:@"UnixCommands.txt" withName:@"Unix commands"];
     [self registerDictionary:[[RandomDictionary alloc] initWithRange:NSMakeRange(5, 7)]
                     withName:@"Random words (5..7)"];
-    [dictionaryComboBox addItemsWithObjectValues:[dictionaries allKeys]];
+    [dictionaryComboBox addItemsWithObjectValues:dictionariesOrder];
     [dictionaryComboBox selectItemAtIndex:0];
     [self resetStats];
 }
@@ -81,6 +82,7 @@
 
 - (void)registerDictionary:(Dictionary *)dict withName:(NSString *)name {
     [dictionaries setObject:dict forKey:name];
+    [dictionariesOrder addObject:name];
     NSLog(@"Registered dictionary with name %@", name);
 }
 

@@ -16,6 +16,7 @@
 
 @interface GameController : NSObject {
     NSMutableDictionary *dictionaries;
+    NSMutableArray *dictionariesOrder;
     NSMutableArray *words;
     NSLock *lock;
     IBOutlet NSComboBox *dictionaryComboBox;
