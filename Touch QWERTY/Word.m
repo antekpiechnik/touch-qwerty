@@ -20,7 +20,7 @@
         [self setEditable:NO];
         [self setBezeled:NO];
         [self setBordered:NO];
-        [self setFont:[NSFont fontWithName:@"Futura" size:20.0]];
+        [self setFont:[NSFont fontWithName:@"Tahoma" size:20.0]];
         [self setStringValue:word];
         [self sizeToFit];
         speed = aSpeed;
@@ -56,10 +56,7 @@
                       range:NSMakeRange(0, [typed length])];
         [self setAttributedStringValue: value];
         alpha = [[self textColor] alphaComponent];
-        alpha *= 1.15;
-        if (alpha > 1.0) {
-            alpha = 1.0;
-        }
+        alpha += (0.7 / [[self stringValue] length]);
         [self setTextColor:[NSColor colorWithCalibratedRed:0.0
                                                      green:0.0
                                                       blue:0.0

@@ -60,6 +60,7 @@
 
 - (void)awakeFromNib {
     [self registerFileDictionary:@"EnglishWords.txt" withName:@"English words"];
+    [self registerFileDictionary:@"UnixCommands.txt" withName:@"Unix commands"];
     [self registerDictionary:[[RandomDictionary alloc] initWithRange:NSMakeRange(5, 7)]
                     withName:@"Random words (5..7)"];
     [dictionaryComboBox addItemsWithObjectValues:[dictionaries allKeys]];
@@ -93,10 +94,10 @@
     NSRect rect;
     float speed;
     
-    speed = 0.4 + (float)(rand() % 100) / 100.0;
+    speed = (float)(rand() % 100) / 250.0 + log10f(correctHits * 1.0 + 10.0);
     dict = [self currentDictionary];
     rect = NSMakeRect((NSUInteger)([boardView frame].size.width),
-                      rand() % (NSUInteger)([boardView frame].size.height),
+                      35 + rand() % ((NSUInteger)([boardView frame].size.height) - 35),
                       1,
                       1);
     if (rect.origin.y > [boardView frame].origin.y - 25.0) {
