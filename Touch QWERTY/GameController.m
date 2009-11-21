@@ -107,6 +107,7 @@
     }
     word = [[Word alloc] initWithFrame:rect word:[dict nextWord] andSpeed:speed];
     [words addObject:word];
+    [word release];
     [boardView addSubview:word];
     [boardView setNeedsDisplay:YES];
 }
@@ -189,6 +190,7 @@
             [word clearTypedLetters];
         }
     }
+    [toRemove release];
     [lock unlock];
 }
 

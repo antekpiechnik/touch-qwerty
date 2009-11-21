@@ -55,6 +55,7 @@
                       value:[NSColor redColor]
                       range:NSMakeRange(0, [typed length])];
         [self setAttributedStringValue: value];
+        [value release];
         alpha = [[self textColor] alphaComponent];
         alpha += (0.7 / [[self stringValue] length]);
         [self setTextColor:[NSColor colorWithCalibratedRed:0.0
@@ -76,4 +77,8 @@
     [self setTextColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.3]];
 }
 
+- (void)dealloc {
+    [typed release];
+    [super dealloc];
+}
 @end
